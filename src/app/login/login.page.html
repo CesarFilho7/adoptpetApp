@@ -1,0 +1,25 @@
+<ion-content>
+  <form>
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h3>AdoptPet!</h3>
+          </div> 
+          <div padding> 
+            <ion-item>
+              <ion-input name="email" [(ngModel)]="usuarioLogin.email" type="email" placeholder="@email.com" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="senha" [(ngModel)]="usuarioLogin.senha" type="password" placeholder="Senha" required></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button (click)="logar()"  size="default" type="submit" expand="block">Login</ion-button><!--[disabled]="form.invalid"-->
+          </div>
+          <p text-center>Registrar!</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

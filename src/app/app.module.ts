@@ -5,9 +5,11 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { HttpClientModule } from '../../../adoptpetApp/node_modules/@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CategoriaService } from 'src/services/domain/categoria.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,11 +17,13 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    CategoriaService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
