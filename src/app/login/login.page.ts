@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriaService } from 'src/services/domain/categoria.service';
+import { CategoriaService } from '../../services/domain/categoria.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginDTO } from '../../../src/models/login.dto';
-import { NavController } from '@ionic/angular';
+import { NavController, MenuController } from '@ionic/angular';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,10 @@ export class LoginPage implements OnInit {
     senha: ""
   }
 
-  constructor(public navCtrl: NavController, public categoriaService: CategoriaService) {
+  constructor(public navCtrl: NavController, 
+    public categoriaService: CategoriaService, 
+    public menu: MenuController,
+    public auth: AuthService) {
 
   }
 
@@ -37,9 +41,25 @@ export class LoginPage implements OnInit {
         })
   }
 
+  ionViewWillEnter(){
+    this.menu.swipeEnable(false);
+  }
+
+  ionViewDidLeave(){
+    this.menu.swipeEnable(true);
+  }
+
   logar(){
-    console.log(this.usuarioLogin);
-    this.navCtrl.navigateRoot('/home');
+    console.log('1111111');
+    this.auth.authenticate(this.usuarioLogin)
+    .subscribe(response => {
+      console.log('22222');
+      console.log(response.headers.get('Authorization'));
+      this.navCtrl.navigateRoot('/home');
+    },
+    error => {
+      alert('Email ou Senha Inválidos!');
+    });
   }
 
 

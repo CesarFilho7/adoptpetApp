@@ -10,6 +10,7 @@ import { HttpClientModule } from '../../../adoptpetApp/node_modules/@angular/com
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CategoriaService } from 'src/services/domain/categoria.service';
+import { AuthService } from 'src/services/auth.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { CategoriaService } from 'src/services/domain/categoria.service';
     StatusBar,
     SplashScreen,
     CategoriaService,
+    AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
