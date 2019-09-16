@@ -50,11 +50,13 @@ export class LoginPage implements OnInit {
   }
 
   logar(){
-    console.log('1111111');
     this.auth.authenticate(this.usuarioLogin)
     .subscribe(response => {
-      console.log('22222');
+      console.log(this.usuarioLogin);
+      console.log(response);
+      console.log(response.body);
       console.log(response.headers.get('Authorization'));
+      // this.auth.successfullLogin(response.headers.get('Authorization'));
       this.navCtrl.navigateRoot('/home');
     },
     error => {

@@ -12,4 +12,8 @@ export class CategoriaService {
     findAllUsuarios(){
         return this.http.get(`${API_CONFIG.baseUrl}usuarios`);
     }
+
+    findAllPets(){
+        return this.http.get(`${API_CONFIG.baseUrl}pets`);
+    }
 }
