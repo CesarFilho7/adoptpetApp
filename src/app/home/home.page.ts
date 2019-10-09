@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { CategoriaService } from 'src/services/domain/categoria.service';
+import { AuthService } from '../../services/auth.service';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-home',
@@ -10,7 +13,9 @@ export class HomePage {
 
   public allPets;
 
-  constructor(public categoriaService: CategoriaService) {}
+  constructor(public categoriaService: CategoriaService, 
+    public auth: AuthService, 
+    public navCtrl: NavController) { }
 
   ngOnInit() {
     this.buscarPets();
@@ -28,4 +33,9 @@ export class HomePage {
         })
   }
 
+
+  logoutUsuario(){
+    this.auth.logout();
+    this.navCtrl.navigateRoot('/login');
+  }
 }

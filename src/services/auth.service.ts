@@ -21,14 +21,14 @@ export class AuthService {
     }
 
     successfullLogin( authorizationValue: string){
-        let tok = authorizationValue.substring(7); // Pegar somente o token
+        let tok = authorizationValue // Pegar somente o token
         let user: LocalUser = {
             token: tok
         }
         this.storage.setLocalUser(user); //Guardo meu usuario no meu localStorage
     }
     
-    // Removo do meu localStorage o usuario
+    // Remove do meu localStorage o usuario
     logout(){
         this.storage.setLocalUser(null);
     }

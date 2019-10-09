@@ -55,8 +55,8 @@ export class LoginPage implements OnInit {
       console.log(this.usuarioLogin);
       console.log(response);
       console.log(response.body);
-      console.log(response.headers.get('Authorization'));
-      // this.auth.successfullLogin(response.headers.get('Authorization'));
+      // console.log(response.headers.get('Authorization'));
+      this.auth.successfullLogin(response.body);
       this.navCtrl.navigateRoot('/home');
     },
     error => {
