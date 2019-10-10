@@ -64,5 +64,9 @@ export class LoginPage implements OnInit {
     });
   }
 
+  cadastrarUsuario(){
+    this.navCtrl.navigateRoot('/cadastro')
+  }
+
 
 }

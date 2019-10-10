@@ -16,6 +16,12 @@ export class AppComponent {
       url: '/home',
       icon: 'home'
     },
+    {
+      title: 'Profile',
+      url: '/profile',
+      icon: 'home',
+      component: 'ProfilePage'
+    },
   ];
 
   constructor(
