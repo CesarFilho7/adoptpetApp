@@ -1,25 +1,30 @@
 <ion-content>
-  <form>
-    <ion-grid>
-      <ion-row justify-content-center>
-        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div text-center>
-            <h3>AdoptPet!</h3> 
-          </div> 
-          <div padding> 
-            <ion-item>
-              <ion-input name="email" [(ngModel)]="usuarioLogin.email" type="email" placeholder="Email" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="senha" [(ngModel)]="usuarioLogin.senha" type="password" placeholder="Senha" required></ion-input>
-            </ion-item>
-          </div>
-          <div padding>
-            <ion-button (click)="logar()"  size="default" type="submit" expand="block">Login</ion-button><!--[disabled]="form.invalid"-->
-          </div>
-          <p text-center><ion-button (click)="cadastrarUsuario()" size="small" type="submit">Registrar</ion-button></p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
-</ion-content>
+    <form>
+      <ion-grid>
+        <ion-row justify-content-center>
+          <ion-col align-self-center size-md="3" size-lg="2" size-xs="12">
+              <img src="https://i.imgur.com/5NaVHAZ.png" alt="" />
+            <div> 
+              <ion-item>
+                <ion-input name="email" [(ngModel)]="usuarioLogin.email" type="email" placeholder="Email" color="text-color" required></ion-input>
+                <ion-icon name="ios-mail" slot="start" color="text-color"> </ion-icon>
+              </ion-item>
+              <ion-item>
+                <ion-input name="senha" [(ngModel)]="usuarioLogin.senha" type="password" placeholder="Senha" required></ion-input>
+                <ion-icon name="ios-lock" slot="start" color="text-color"> </ion-icon>
+              </ion-item>
+            </div>
+            <div padding>
+              <ion-button (click)="logar()"  size="default" type="submit" expand="block" color="secondary"><p class="ion-padding-horizontal" style="font-weight: 700;">Login</p></ion-button><!--[disabled]="form.invalid"-->
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-content>
+  
+  <ion-footer no-shadow>
+      <ion-toolbar position="bottom">
+      <p text-center><ion-button (click)="cadastrarUsuario()" size="small" type="submit" color="secondary">Cadastre-se!</ion-button></p>
+      </ion-toolbar>
+  </ion-footer>
