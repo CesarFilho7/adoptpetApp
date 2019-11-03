@@ -18,16 +18,12 @@ export class CadastroPage implements OnInit {
   constructor(private fb: FormBuilder, private navCtrl: NavController, public http: HttpClient) { 
   }
 
-  // public usuarioCadastro : LoginDTO = {
-  //   email: "",
-  //   senha: "" 
-  // }
-
   ngOnInit() {
     this.form = this.fb.group({
       'nome': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       'email': ['', [Validators.required, Validators.maxLength(100)]],
       'senha': ['', [Validators.required, Validators.maxLength(20)]],
+      'cpf': ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
     });
   }
 
@@ -39,15 +35,14 @@ export class CadastroPage implements OnInit {
       alert('Preencha os campos obrigatórios.')
       return;
     }
-    this.http.post('http://localhost:3000/usuarios/', this.usuario)
+    this.http.post('https://adoptpet-api.herokuapp.com/usuarios/', this.usuario)
     .subscribe(data => {
       console.log(data);
      }, error => {
       console.log(error); 
     });
-
-    // this.navCtrl.navigateRoot('/home');
+    // this.navCtrl.navigateRoot('/login');
   }
-
+  
 
 }

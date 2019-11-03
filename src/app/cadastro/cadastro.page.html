@@ -12,7 +12,7 @@
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div text-center>
-            <h3>Cadastro!</h3> 
+            <h3>Cadastro!</h3>
           </div> 
           <div padding> 
             <ion-item>
@@ -23,6 +23,9 @@
             </ion-item>
             <ion-item>
               <ion-input name="senha" [(ngModel)]="usuario.senha" formControlName="senha" type="password"  placeholder="Senha" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="cpf" [(ngModel)]="usuario.cpf" formControlName="cpf"  placeholder="Cpf" type="number" required></ion-input>
             </ion-item>
           </div>
           <div padding>
