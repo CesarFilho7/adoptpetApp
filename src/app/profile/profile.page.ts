@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from '@ionic/angular';
 import { StorageService } from 'src/services/storage.service';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,9 @@ import { StorageService } from 'src/services/storage.service';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  constructor(public navCtrl: NavController, 
+    public auth: AuthService) {
+  }
 
   ngOnInit() {
     
@@ -17,5 +20,10 @@ export class ProfilePage implements OnInit {
 
   salvar(){
     
+  }
+
+  logoutUsuario(){
+    this.auth.logout();
+    this.navCtrl.navigateRoot('/login');
   }
 }

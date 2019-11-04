@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CategoriaService } from 'src/services/domain/categoria.service';
 import { AuthService } from '../../services/auth.service';
-import { NavController } from '@ionic/angular';
-
+import { NavController } from '@ionic/angular'; 
+import * as jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,17 @@ export class HomePage {
     public navCtrl: NavController) { }
 
   ngOnInit() {
+    let token = localStorage.getItem('localUser');
+    console.log(token);
+    if(token != null){
+      let decoded = jwtDecode(token)
+      console.log(decoded);
+    }
     this.buscarPets();
+  }
+
+  buscarPet(){
+    this.navCtrl.navigateRoot('/pet')
   }
 
 

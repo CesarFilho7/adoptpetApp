@@ -21,7 +21,7 @@ export class AuthService {
     }
 
     successfullLogin( authorizationValue: string){
-        let tok = authorizationValue // Pegar somente o token
+        let tok = authorizationValue.substring(40) // Pegar somente o token
         let user: LocalUser = {
             token: tok
         }

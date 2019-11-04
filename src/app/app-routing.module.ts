@@ -18,7 +18,13 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: './profile/profile.module#ProfilePageModule'
-  },  { path: 'cadastro', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
+  },
+  { path: 'cadastro',
+    loadChildren: './cadastro/cadastro.module#CadastroPageModule' 
+  },
+  { path: 'pet', 
+    loadChildren: './pet/pet.module#PetPageModule' 
+  },
 
 
 ];
