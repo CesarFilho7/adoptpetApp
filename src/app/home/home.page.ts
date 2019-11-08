@@ -45,17 +45,6 @@ export class HomePage {
 
   buscarPets() {
 
-    // try {
-    //   this.stadeEdit = true
-    //   this.allPets = this.http.get('https://adoptpet-api.herokuapp.com/pets/');
-    //   console.log(this.allPets);
-    // } catch (e) {
-    //   console.log('Entrou');
-      
-    // } finally {
-    //   this.stadeEdit = false;
-    // }
-    
   this.categoriaService.findAllPets()
     .subscribe(response => {      
       this.allPets = response
@@ -65,7 +54,6 @@ export class HomePage {
         console.log(error);
       })      
   }
-
 
   logoutUsuario(){
     this.auth.logout();

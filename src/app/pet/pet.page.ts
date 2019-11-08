@@ -20,9 +20,11 @@ export class PetPage implements OnInit {
   public petPorId: any = {};
   public form: FormGroup;
   public aguardarValor: boolean = false
+  public usuarioID
+  public loading: boolean = false
 
-  constructor(public navCtrl: NavController, 
-    public categoriaService: CategoriaService, 
+  constructor(public navCtrl: NavController,
+    public categoriaService: CategoriaService,
     private fb: FormBuilder,
     public menu: MenuController,
     public http: HttpClient,
@@ -30,17 +32,20 @@ export class PetPage implements OnInit {
     private route: ActivatedRoute) {
   }
 
- async ngOnInit() {
+  async ngOnInit() {
     const id = this.route.snapshot.params.id;
 
     if (id != null) {
-     await this.getPet(id);
+      await this.getPet(id);
     }
 
     let token = localStorage.getItem('localUser');
     console.log(token);
-    if(token != null){
+    if (token != null) {
       let decoded = jwtDecode(token)
+      this.usuarioID = decoded.user_id
+      console.log(this.usuarioID);
+
       console.log(decoded);
     }
 
@@ -53,18 +58,48 @@ export class PetPage implements OnInit {
   }
 
   getPet(id: string) {
-    this.http.get('https://adoptpet-api.herokuapp.com/pets/' + id)  
-      .subscribe(response => {        
+    this.http.get('https://adoptpet-api.herokuapp.com/pets/' + id)
+      .subscribe(response => {
         this.petPorId = response
         console.log(this.petPorId);
         this.aguardarValor = true
       },
         error => {
           console.log(error);
-        })   
+        })
   }
 
-  logoutUsuario(){
+  adotar() {
+    if (this.usuarioID != null || this.usuarioID != "") {
+      if (this.usuarioID !== this.petPorId.usuario_id) {
+        const pedido = {
+          pet_id: this.petPorId.id,
+          usuario_id: this.usuarioID,
+          status: 'Pendente'
+        }
+
+        this.http.post('https://adoptpet-api.herokuapp.com/pedidos/', pedido)
+          .subscribe(data => {
+            console.log(data);
+            this.loading = true;
+            if (this.loading == true) {
+              this.navCtrl.navigateRoot('/home');
+            }
+          }, error => {
+            console.log(error);
+          });
+
+      } else {
+        alert("Não é possivel adotar o proprio pet")
+      }
+    } else {
+      alert("Para adotar um pet é preciso fazer login!")
+    }
+
+  }
+
+
+  logoutUsuario() {
     this.auth.logout();
     this.navCtrl.navigateRoot('/login');
   }
