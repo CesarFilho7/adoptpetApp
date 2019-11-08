@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 
 
 import * as jwtDecode from 'jwt-decode';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -17,33 +18,50 @@ import * as jwtDecode from 'jwt-decode';
 export class PetPage implements OnInit {
 
   public petPorId: any = {};
-  
+  public form: FormGroup;
+  public aguardarValor: boolean = false
 
   constructor(public navCtrl: NavController, 
     public categoriaService: CategoriaService, 
+    private fb: FormBuilder,
     public menu: MenuController,
     public http: HttpClient,
     public auth: AuthService,
     private route: ActivatedRoute) {
   }
 
-  ngOnInit() {
+ async ngOnInit() {
+    const id = this.route.snapshot.params.id;
+
+    if (id != null) {
+     await this.getPet(id);
+    }
+
     let token = localStorage.getItem('localUser');
     console.log(token);
     if(token != null){
       let decoded = jwtDecode(token)
       console.log(decoded);
     }
-    this.getPet();
+
+    this.form = this.fb.group({
+      'nome': [''],
+      'genero': [''],
+      'descricao': [''],
+      'porte': [''],
+    });
   }
 
-  getPet() {
-    this.petPorId = this.http.get('https://adoptpet-api.herokuapp.com/pets/' + 1)
-     .subscribe(data => {
-      console.log(data);      
-     }, error => {
-      console.log(error); 
-    });
+  getPet(id: string) {
+    this.http.get('https://adoptpet-api.herokuapp.com/pets/' + id)  
+      .subscribe(response => {        
+        this.petPorId = response
+        console.log(this.petPorId);
+        this.aguardarValor = true
+      },
+        error => {
+          console.log(error);
+        })   
   }
 
   logoutUsuario(){

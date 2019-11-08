@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'cadastro',
     loadChildren: './cadastro/cadastro.module#CadastroPageModule' 
   },
-  { path: 'pet', 
+  { path: 'pets/:id', 
     loadChildren: './pet/pet.module#PetPageModule' 
   },
 

@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header *ngIf="aguardarValor">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -9,30 +9,42 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-  <!-- <ion-card class="welcome-card">
-    <ion-card-header>
-        <ion-card-title><p style="color: #090827; font-style: italic; font-weight: 700px; ">Bem-Vindo(a)!</p></ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>São dezenas de animais procurando por um novo lar. Ajude-nos e encontre o seu novo amigo!
-      </p>
-    </ion-card-content> 
-  </ion-card> -->
-  <ion-item>
-    <ion-thumbnail slot="start">
-      <img src="https://www.acasadoanimal.com.br/wp-content/uploads/2019/01/vira-latas.png">
-    </ion-thumbnail>
-    <p>Nome: </p>
-    <p>Sexo: </p>
-    <p>Descrição:</p>
-    <p>Porte: </p>
-  </ion-item>
-  <div padding>
-    <ion-button (click)="adotar()" size="default" type="submit" expand="block" color="secondary">
-      <p class="ion-padding-horizontal" style="font-weight: 700;">Adotar</p>
-    </ion-button>
-    <!--[disabled]="form.invalid"-->
-  </div>
+<ion-content *ngIf="aguardarValor">
+  <form [formGroup]="form">
+    <ion-card class="welcome-card">
+      <ion-card-content>
+        <ion-item slot="start">
+          <img src="https://www.acasadoanimal.com.br/wp-content/uploads/2019/01/vira-latas.png">
+        </ion-item><br>
+        <ion-item>
+          <ion-label>Nome: </ion-label>
+          <ion-input name="nome" [(ngModel)]="petPorId.nome" formControlName="nome" placeholder="Nome" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Gênero: </ion-label>
+          <ion-input name="genero" [(ngModel)]="petPorId.genero" formControlName="genero" placeholder="genero" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Descrição: </ion-label>
+          <ion-textarea rows="3" [(ngModel)]="petPorId.descricao" formControlName="descricao" placeholder="descricao" readonly></ion-textarea>
+          <!-- <ion-input name="descricao" [(ngModel)]="petPorId.descricao" formControlName="descricao" placeholder="descricao" readonly></ion-input> -->
+        </ion-item>
+        <ion-item>
+          <ion-label>Porte: </ion-label>
+          <ion-input name="porte" [(ngModel)]="petPorId.porte" formControlName="porte" placeholder="porte" readonly></ion-input>
+        </ion-item>
+        <!-- <input [(ngModel)]="petPorId.nome" formControlName="nome">Nome: </input>
+      <br>
+      <input [(ngModel)]="petPorId.genero" formControlName="genero">Sexo: </input><br>
+      <input [(ngModel)]="petPorId.descricao" formControlName="descricao">Descrição:</input><br>
+      <input [(ngModel)]="petPorId.porte" formControlName="porte">Porte: </input> -->
+      </ion-card-content>
+    </ion-card>
+    <div padding>
+      <ion-button (click)="adotar()" size="default" type="submit" expand="block" color="secondary">
+        <p class="ion-padding-horizontal" style="font-weight: 700;">Adotar</p>
+      </ion-button>
+      <!--[disabled]="form.invalid"-->
+    </div>
+  </form>
 </ion-content>
