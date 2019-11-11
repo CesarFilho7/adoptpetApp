@@ -12,19 +12,19 @@
 <br>
 
 <ion-content *ngIf="aguardarValor">
-  <form [formGroup]="form">
-    <ion-item *ngFor="let pets of pedidoPendentes">
-      <ion-thumbnail slot="start">
-        <img src="https://www.acasadoanimal.com.br/wp-content/uploads/2019/01/vira-latas.png">
-      </ion-thumbnail>
-      <ion-label>Nome: </ion-label>
-      <ion-input name="nome" [(ngModel)]="pets.nome_pet" formControlName="nome" placeholder="Nome" readonly>
-      </ion-input>
-    </ion-item>
-    <div padding>
+  <ion-item *ngFor="let pet of pedidoPendentes">
+    <ion-thumbnail slot="start">
+      <img src="https://www.acasadoanimal.com.br/wp-content/uploads/2019/01/vira-latas.png">
+    </ion-thumbnail>
+    <ion-label>Nome: </ion-label>
+    <ion-input name="nome" [(ngModel)]="pet.nome_pet" placeholder="Nome" readonly></ion-input>
+    <ion-button color="success" (click)="responderPedido(pet.id, 'Aprovado')">Aceitar</ion-button>
+    <ion-button color="danger" (click)="responderPedido(pet.id, 'Negado')">X</ion-button>
+
+  </ion-item>
+  <!-- <div padding>
       <ion-button (click)="adotar()" size="default" type="submit" expand="block" color="secondary">
         <p class="ion-padding-horizontal" style="font-weight: 700;">Aceitar</p>
       </ion-button>
-    </div>
-  </form>
+    </div> -->
 </ion-content>

@@ -19,7 +19,7 @@ export class PedidosPage implements OnInit {
   public usuarioID;
   public form: FormGroup;
   public aguardarValor: boolean = false
-  public pedidoPendentes
+  public pedidoPendentes;
 
 
   constructor(public navCtrl: NavController,
@@ -31,20 +31,22 @@ export class PedidosPage implements OnInit {
     private route: ActivatedRoute) {
   }
 
+
+
   async ngOnInit() {
 
     let token = localStorage.getItem('localUser');
     console.log(token);
     if (token != null) {
       let decoded = jwtDecode(token)
+      console.log(decoded);
       this.usuarioID = decoded.user_id
-
       this.http.get('https://adoptpet-api.herokuapp.com/usuarios/pedidos_pendentes/' + this.usuarioID)
         .subscribe(response => {
+          this.aguardarValor = true
           this.pedidoPendentes = response
           console.log(this.pedidoPendentes);
           
-          this.aguardarValor = true
         },
           error => {
             console.log(error);
@@ -57,6 +59,22 @@ export class PedidosPage implements OnInit {
       'nomeUsuario': [''],
       'foto': [''],
     });
+  }
+
+  responderPedido(_id, _resposta) {
+    const pedido = {
+      status: _resposta
+    };
+
+    this.http.put('https://adoptpet-api.herokuapp.com/pedidos_resposta/' + _id, pedido)
+      .subscribe(response => {
+        console.log(response);
+        },
+        error => {
+          this.navCtrl.navigateRoot('/pedidos');
+          location.reload()
+          console.log(error);
+        })
   }
 
   logoutUsuario() {
