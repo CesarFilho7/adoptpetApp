@@ -24,7 +24,8 @@ const routes: Routes = [
   },
   { path: 'pets/:id', 
     loadChildren: './pet/pet.module#PetPageModule' 
-  },
+  },  { path: 'pedidos', loadChildren: './pedidos/pedidos.module#PedidosPageModule' },
+
 
 
 ];

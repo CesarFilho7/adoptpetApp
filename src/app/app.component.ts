@@ -22,6 +22,12 @@ export class AppComponent {
       icon: 'home',
       component: 'ProfilePage'
     },
+    {
+      title: 'Pedidos',
+      url: '/pedidos',
+      icon: 'home',
+      component: 'PedidosPage'
+    },
   ];
 
   constructor(

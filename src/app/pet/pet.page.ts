@@ -84,6 +84,7 @@ export class PetPage implements OnInit {
             this.loading = true;
             if (this.loading == true) {
               this.navCtrl.navigateRoot('/home');
+              alert("Pedido Enviado");
             }
           }, error => {
             console.log(error);
