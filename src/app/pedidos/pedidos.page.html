@@ -10,8 +10,10 @@
   </ion-toolbar>
 </ion-header>
 <br>
-
 <ion-content *ngIf="aguardarValor">
+  <ion-item *ngIf="pedidoPendentes.length == 0 || pedidoPendentes.length == []">
+    <ion-label text-center>Não há Pedidos! </ion-label>
+  </ion-item>
   <ion-item *ngFor="let pet of pedidoPendentes">
     <ion-thumbnail slot="start">
       <img src="https://www.acasadoanimal.com.br/wp-content/uploads/2019/01/vira-latas.png">
@@ -20,7 +22,6 @@
     <ion-input name="nome" [(ngModel)]="pet.nome_pet" placeholder="Nome" readonly></ion-input>
     <ion-button color="success" (click)="responderPedido(pet.id, 'Aprovado')">Aceitar</ion-button>
     <ion-button color="danger" (click)="responderPedido(pet.id, 'Negado')">X</ion-button>
-
   </ion-item>
   <!-- <div padding>
       <ion-button (click)="adotar()" size="default" type="submit" expand="block" color="secondary">
