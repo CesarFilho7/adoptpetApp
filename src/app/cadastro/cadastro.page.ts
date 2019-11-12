@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginDTO } from '../../../src/models/login.dto';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, LoadingController, MenuController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { headersToString } from 'selenium-webdriver/http';
 
@@ -20,7 +20,8 @@ export class CadastroPage implements OnInit {
   constructor(private fb: FormBuilder,
     private navCtrl: NavController,
     public http: HttpClient,
-    public loadingController: LoadingController) {
+    public loadingController: LoadingController,
+    public menu: MenuController) {
   }
 
   ngOnInit() {
@@ -77,6 +78,15 @@ export class CadastroPage implements OnInit {
     });    
     
   }
+
+  ionViewWillEnter(){
+    this.menu.swipeEnable(false);
+  }
+
+  // ionViewDidLeave(){
+  //   this.menu.swipeEnable(true);
+  // }
+
 
 
 }

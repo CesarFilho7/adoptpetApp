@@ -45,9 +45,9 @@ export class LoginPage implements OnInit {
     this.menu.swipeEnable(false);
   }
 
-  ionViewDidLeave(){
-    this.menu.swipeEnable(true);
-  }
+  // ionViewDidLeave(){
+  //   this.menu.swipeEnable(true);
+  // }
 
   logar(){
     this.auth.authenticate(this.usuarioLogin)

@@ -22,6 +22,7 @@ export class PetPage implements OnInit {
   public aguardarValor: boolean = false
   public usuarioID
   public loading: boolean = false
+  public imagePet
 
   constructor(public navCtrl: NavController,
     public categoriaService: CategoriaService,
@@ -68,6 +69,8 @@ export class PetPage implements OnInit {
           console.log(error);
         })
   }
+
+ 
 
   adotar() {
     if (this.usuarioID != null || this.usuarioID != "") {

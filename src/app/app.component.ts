@@ -28,6 +28,7 @@ export class AppComponent {
       icon: 'home',
       component: 'PedidosPage'
     },
+    
   ];
 
   constructor(
