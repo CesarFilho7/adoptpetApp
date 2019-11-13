@@ -1,0 +1,67 @@
+<ion-header *ngIf="currentLoading">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title text-center>Adicionar Pet!</ion-title>
+    <ion-buttons (click)="logoutUsuario()" slot="end" size="small" padding="padding:1px" type="submit"
+      color="secondary"><img src="https://i.imgur.com/KzuKVhG.png" />
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="salvar()">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-item>
+              <ion-label>Nome</ion-label>
+              <ion-input name="nome" [(ngModel)]="pet.nome" formControlName="nome" required>
+              </ion-input>
+            </ion-item>
+            <!-- <ion-item>
+              <ion-input name="data_nasc" [(ngModel)]="pet.data_nasc" formControlName="data_nasc"
+                placeholder="Data de Nascimento"></ion-input>
+            </ion-item> -->
+            <ion-item>
+              <ion-label>Espécie</ion-label>
+              <ion-select formControlName="especie" required>
+                <ion-select-option *ngFor="let especie of especieTipos">{{ especie.nome }} 
+                </ion-select-option>
+              </ion-select>
+              <!-- <ion-label>Espécie</ion-label>
+              <ion-input name="especie" [(ngModel)]="pet.especie" formControlName="especie" required></ion-input> -->
+            </ion-item>
+            <ion-item>
+              <ion-label>Porte</ion-label>
+              <ion-select formControlName="porte" required>
+                <ion-select-option *ngFor="let porte of porteTipos">{{ porte.nome }} 
+                </ion-select-option>
+              </ion-select>
+              <!-- <ion-input name="porte" [(ngModel)]="pet.porte" formControlName="porte" placeholder="Porte"></ion-input> -->
+            </ion-item>
+            <ion-item>
+              <ion-label>Gênero</ion-label>
+              <ion-select formControlName="genero">
+                <ion-select-option *ngFor="let genero of generoTipos">{{ genero.nome }}
+                </ion-select-option>
+              </ion-select>
+              <!-- <ion-input name="genero" [(ngModel)]="pet.genero" formControlName="genero" placeholder="Gênero" required> -->
+              <!-- </ion-input> -->
+            </ion-item>
+            <ion-item>
+              <ion-label>Descrição: </ion-label>
+              <ion-textarea rows="3" [(ngModel)]="pet.descricao" formControlName="descricao"></ion-textarea>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button size="default" type="submit" expand="block" color="secondary" [disabled]="form.invalid">
+              <p class="ion-padding-horizontal" style="font-weight: 700;">Adicionar</p>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

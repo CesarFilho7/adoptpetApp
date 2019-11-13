@@ -28,6 +28,12 @@ export class AppComponent {
       icon: 'home',
       component: 'PedidosPage'
     },
+    {
+      title: 'Adicionar Pet',
+      url: '/adicionar-pet',
+      icon: 'home',
+      component: 'AdicionarPetPage'
+    },
     
   ];
 

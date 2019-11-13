@@ -19,13 +19,21 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: './profile/profile.module#ProfilePageModule'
   },
-  { path: 'cadastro',
-    loadChildren: './cadastro/cadastro.module#CadastroPageModule' 
+  {
+    path: 'cadastro',
+    loadChildren: './cadastro/cadastro.module#CadastroPageModule'
   },
-  { path: 'pets/:id', 
-    loadChildren: './pet/pet.module#PetPageModule' 
+  {
+    path: 'pets/:id',
+    loadChildren: './pet/pet.module#PetPageModule'
   },
-  { path: 'pedidos', loadChildren: './pedidos/pedidos.module#PedidosPageModule' },
+  {
+    path: 'pedidos', loadChildren: './pedidos/pedidos.module#PedidosPageModule'
+  },
+  {
+    path: 'adicionar-pet', loadChildren: './adicionar-pet/adicionar-pet.module#AdicionarPetPageModule'
+  },
+
 
 
 
