@@ -4,8 +4,8 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title text-center>Adote Já!</ion-title>
-    <ion-buttons (click)="logoutUsuario()" slot="end" size="small" padding="padding:1px" type="submit"
-      color="secondary"><img src="https://i.imgur.com/KzuKVhG.png" />
+    <ion-buttons (click)="goHome()" slot="end" size="small" padding="padding:1px" type="submit" color="secondary"><img
+        src="https://i.imgur.com/KzuKVhG.png" />
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -18,7 +18,18 @@
         </ion-item><br>
         <ion-item>
           <ion-label>Nome: </ion-label>
-          <ion-input name="nome" [(ngModel)]="petPorId.nome" formControlName="nome" placeholder="Nome" readonly></ion-input>
+          <ion-input name="nome" [(ngModel)]="petPorId.nome" formControlName="nome" readonly>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Dono: </ion-label>
+          <ion-input name="dono" [(ngModel)]="petPorId.dono" formControlName="dono" readonly>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Porte: </ion-label>
+          <ion-input name="porte" [(ngModel)]="petPorId.porte" formControlName="porte" readonly>
+          </ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Gênero: {{ this.petPorId.genero == 'F' ? 'Fêmea' : 'Macho' }}</ion-label>
@@ -26,17 +37,13 @@
         </ion-item>
         <ion-item>
           <ion-label>Descrição: </ion-label>
-          <ion-textarea rows="3" [(ngModel)]="petPorId.descricao" formControlName="descricao" placeholder="descricao" readonly></ion-textarea>
-        </ion-item>
-        <ion-item>
-          <ion-label>Porte: </ion-label>
-          <ion-input name="porte" [(ngModel)]="petPorId.porte" formControlName="porte" placeholder="porte" readonly></ion-input>
+          <ion-textarea rows="3" [(ngModel)]="petPorId.descricao" formControlName="descricao" readonly></ion-textarea>
         </ion-item>
       </ion-card-content>
     </ion-card>
     <div padding>
       <ion-button (click)="adotar()" size="default" type="submit" expand="block" color="secondary">
-        <p class="ion-padding-horizontal" style="font-weight: 700;">Adotar</p>
+        <p class="ion-padding-horizontal" style="font-weight: 700;">Solicitar Adoção</p>
       </ion-button>
     </div>
   </form>

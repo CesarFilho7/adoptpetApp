@@ -1,5 +1,7 @@
 {
   "name": "adoptPet",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

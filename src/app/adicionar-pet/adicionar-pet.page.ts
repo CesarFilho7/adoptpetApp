@@ -58,13 +58,13 @@ export class AdicionarPetPage implements OnInit {
     
     const pet = {
       nome: this.form.value.nome,
-      data_nasc: this.form.value.data_nasc,
+      data_nasc: '20/10/2015',
       especie: this.form.value.especie,
       porte: this.form.value.porte,
       genero: this.form.value.genero,
       descricao: this.form.value.descricao,
       usuario_id: this.usuarioId,
-      foto : this.form.value.foto,
+      foto : "",
       adotado : 0
     };
 
@@ -78,28 +78,28 @@ export class AdicionarPetPage implements OnInit {
        }
      }, error => {
       console.log(error);
-      this.toastService.presentToast("Não foi possivel adicionar!", "danger");
+      this.toastService.presentToast("Não foi possivel salvar!", "danger");
 
     });    
   }
 
-  getBase64(file, cb) {
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-        cb(reader.result)
-    };
-    reader.onerror = function (error) {
-        console.log('Error: ', error);
-    };
+  // getBase64(file, cb) {
+  //   let reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = function () {
+  //       cb(reader.result)
+  //   };
+  //   reader.onerror = function (error) {
+  //       console.log('Error: ', error);
+  //   };
+  // }
+
+  selectImg() {
+  
   }
 
-  selectImg = (e) => {
-    this.getBase64(e.files[0], (result) => {
-        this.form.controls['foto'] = result;
-        // console.log(result)
-    });
-    // this.setState({ [e.target.name]: e.target.files[0] });
+  goHome() {
+    this.navCtrl.navigateRoot('/home');
   }
 
   logoutUsuario() {

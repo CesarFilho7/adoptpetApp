@@ -16,15 +16,15 @@
             <ion-item>
               <ion-input name="nome" [(ngModel)]="usuario.nome" formControlName="nome" placeholder="Nome" required></ion-input>
             </ion-item>
+            <!-- <ion-item>
+              <ion-input name="cpf" [(ngModel)]="usuario.cpf" formControlName="cpf" placeholder="Cpf" required></ion-input>
+            </ion-item> -->
             <ion-item>
               <ion-input name="email" [(ngModel)]="usuario.email" formControlName="email" placeholder="E-mail" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-input name="senha" [(ngModel)]="usuario.senha" formControlName="senha" type="password"  placeholder="Senha" required></ion-input>
             </ion-item>
-            <!-- <ion-item>
-              <ion-input name="cpf" [(ngModel)]="usuario.cpf" formControlName="cpf"  placeholder="Cpf" type="number" required></ion-input>
-            </ion-item> -->
           </div>
           <div padding>
             <ion-button size="default" type="submit" expand="block" color="secondary" [disabled]="form.invalid"><p class="ion-padding-horizontal" style="font-weight: 700;">Salvar</p></ion-button>
@@ -34,3 +34,9 @@
     </ion-grid>
   </form>
 </ion-content>
+
+<ion-footer no-shadow>
+    <ion-toolbar position="bottom">
+    <p text-center><ion-button (click)="goLogin()" size="small" type="submit" color="secondary">voltar</ion-button></p>
+    </ion-toolbar>
+</ion-footer>

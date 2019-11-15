@@ -81,4 +81,8 @@ export class PedidosPage implements OnInit {
     this.auth.logout();
     this.navCtrl.navigateRoot('/login');
   }
+
+  goHome() {
+    this.navCtrl.navigateRoot('/home');
+  }
 }

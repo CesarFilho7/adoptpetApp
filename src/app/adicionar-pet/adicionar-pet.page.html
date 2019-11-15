@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title text-center>Adicionar Pet!</ion-title>
-    <ion-buttons (click)="logoutUsuario()" slot="end" size="small" padding="padding:1px" type="submit"
+    <ion-buttons (click)="goHome()" slot="end" size="small" padding="padding:1px" type="submit"
       color="secondary"><img src="https://i.imgur.com/KzuKVhG.png" />
     </ion-buttons>
   </ion-toolbar>
@@ -55,13 +55,12 @@
               <ion-textarea rows="3" [(ngModel)]="pet.descricao" formControlName="descricao"></ion-textarea>
             </ion-item>
           </div>
-          <ion-toolbar position="bottom">
+          <!-- <ion-toolbar position="bottom">
             <p text-center>
               <ion-button (click)="selectImg()"  type="file" name="foto" id="foto" color="secondary" accept="image/png, image/jpeg" required><ion-icon name="camera"></ion-icon>Adicionar Foto
               </ion-button>
             </p>
-          </ion-toolbar>
-
+          </ion-toolbar> -->
         </ion-col>
       </ion-row>
       <div padding>

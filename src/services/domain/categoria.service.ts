@@ -14,6 +14,6 @@ export class CategoriaService {
     }
 
     findAllPets(){
-        return this.http.get(`${API_CONFIG.baseUrl}pets`);
+        return this.http.get(`${API_CONFIG.baseUrl}pets_disponiveis`);
     }
 }

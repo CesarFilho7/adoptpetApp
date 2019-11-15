@@ -46,6 +46,10 @@ export class HomePage {
     this.navCtrl.navigateRoot('/pets/' + pet.id)
   }
 
+  goHome() {
+    this.navCtrl.navigateRoot('/home');
+  }
+
   buscarPets() {
     this.categoriaService.findAllPets()
       .subscribe(response => {

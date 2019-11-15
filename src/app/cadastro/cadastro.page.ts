@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, LoadingController, MenuController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { headersToString } from 'selenium-webdriver/http';
+import { ToastService } from 'src/services/toast.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -21,7 +22,8 @@ export class CadastroPage implements OnInit {
     private navCtrl: NavController,
     public http: HttpClient,
     public loadingController: LoadingController,
-    public menu: MenuController) {
+    public menu: MenuController,
+    public toastService: ToastService) {
   }
 
   ngOnInit() {
@@ -61,7 +63,7 @@ export class CadastroPage implements OnInit {
     console.log('entrou');
     
     if (!this.form.valid) {
-      alert('Preencha os campos obrigatórios.')
+      this.toastService.presentToast("Preencha os campos obrigatórios.", "danger");
       return;
     }
 
@@ -83,10 +85,11 @@ export class CadastroPage implements OnInit {
     this.menu.swipeEnable(false);
   }
 
+  goLogin(){
+    this.navCtrl.navigateRoot('/login');
+  }
   // ionViewDidLeave(){
   //   this.menu.swipeEnable(true);
   // }
-
-
 
 }

@@ -57,6 +57,7 @@ export class PetPage implements OnInit {
       'genero': [''],
       'descricao': [''],
       'porte': [''],
+      'dono': ['']
     });
   }
 
@@ -87,7 +88,6 @@ export class PetPage implements OnInit {
             this.loading = true;
             if (this.loading == true) {
               this.navCtrl.navigateRoot('/home');
-              // alert("Pedido Enviado");
               this.toastService.presentToast("Pedido Enviado", "success");
             }
           }, error => {
@@ -107,6 +107,10 @@ export class PetPage implements OnInit {
   logoutUsuario() {
     this.auth.logout();
     this.navCtrl.navigateRoot('/login');
+  }
+
+  goHome() {
+    this.navCtrl.navigateRoot('/home');
   }
 
 

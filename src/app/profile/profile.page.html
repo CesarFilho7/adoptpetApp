@@ -1,14 +1,32 @@
-<ion-header>
+<ion-header *ngIf="aguardarValor">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Profile</ion-title>
-    <ion-buttons (click)="logoutUsuario()" slot="end" size="small" padding="padding:1px" type="submit" color="secondary"><img src="https://i.imgur.com/KzuKVhG.png" />
-    </ion-buttons> 
+    <ion-title text-center>Perfil</ion-title>
+    <ion-buttons (click)="goHome()" slot="end" size="small" padding="padding:1px" type="submit" color="secondary"><img
+        src="https://i.imgur.com/KzuKVhG.png" />
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<br>
-<ion-content>
-  Informações do Usuário
+<ion-content *ngIf="aguardarValor">
+  <ion-card class="welcome-card">
+    <ion-card-content>
+      <ion-item slot="start">
+        <img src='http://neoleader.com.br/wp-content/uploads/2015/05/geral_adulto-300x300.png'>
+      </ion-item><br>
+      <ion-item>
+        <ion-label>Nome: </ion-label>
+        <ion-input name="nome" [(ngModel)]="usuarioDados.nome" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>E-mail: </ion-label>
+        <ion-input name="email" [(ngModel)]="usuarioDados.email" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Senha: </ion-label>
+        <ion-input name="senha" [(ngModel)]="usuarioDados.senha" readonly></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

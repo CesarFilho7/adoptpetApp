@@ -30,6 +30,12 @@ export class AppComponent {
       component: 'PedidosPage'
     },
     {
+      title: 'Meus Pets',
+      url: '/usuario-pet',
+      icon: 'person',
+      component: 'UsuarioPetPage'
+    },
+    {
       title: 'Adicionar Pet',
       url: '/adicionar-pet',
       icon: 'home',
