@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginDTO } from '../../../src/models/login.dto';
 import { NavController, MenuController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
+import { ToastService } from 'src/services/toast.service';
+
 
 @Component({
   selector: 'app-login',
@@ -11,9 +13,6 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
-  // public form: FormGroup;
-  // private fb: FormBuilder;
 
   public usuarioLogin : LoginDTO = {
     email: "",
@@ -23,7 +22,8 @@ export class LoginPage implements OnInit {
   constructor(public navCtrl: NavController, 
     public categoriaService: CategoriaService, 
     public menu: MenuController,
-    public auth: AuthService) {
+    public auth: AuthService,
+    public toastService: ToastService) {
 
   }
 
@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
       this.navCtrl.navigateRoot('/home');
     },
     error => {
-      alert('Email ou Senha Inválidos!');
+      this.toastService.presentToast("Email ou Senha Inválidos", "danger");
     });
   }
 

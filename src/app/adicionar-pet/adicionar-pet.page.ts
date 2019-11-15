@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/services/auth.service';
 import * as jwtDecode from 'jwt-decode';
+import { ToastService } from 'src/services/toast.service';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class AdicionarPetPage implements OnInit {
     public http: HttpClient,
     public loadingController: LoadingController,
     public menu: MenuController,
-    public auth: AuthService) {
+    public auth: AuthService,
+    public toastService: ToastService) {
   }
 
   ngOnInit() {
@@ -75,8 +77,29 @@ export class AdicionarPetPage implements OnInit {
         this.navCtrl.navigateRoot('/home');
        }
      }, error => {
-      console.log(error); 
+      console.log(error);
+      this.toastService.presentToast("Não foi possivel adicionar!", "danger");
+
     });    
+  }
+
+  getBase64(file, cb) {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        cb(reader.result)
+    };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
+  }
+
+  selectImg = (e) => {
+    this.getBase64(e.files[0], (result) => {
+        this.form.controls['foto'] = result;
+        // console.log(result)
+    });
+    // this.setState({ [e.target.name]: e.target.files[0] });
   }
 
   logoutUsuario() {

@@ -22,7 +22,7 @@
   </ion-card>
   <ion-item *ngFor="let pets of allPets">
     <ion-thumbnail slot="start"> 
-      <img [src]="pets.foto">
+      <img [src]="pets.foto" (click)="buscarPetPeloId(pets)">
     </ion-thumbnail>
     <p (click)="buscarPetPeloId(pets)">{{ pets.nome }}</p>
   </ion-item>

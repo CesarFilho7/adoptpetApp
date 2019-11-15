@@ -17,7 +17,17 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item>
+            <ion-icon slot="start"></ion-icon>
+            <ion-label (click)="logoutUsuario()">
+              Sair
+            </ion-label>
+          </ion-item>
+
+        </ion-menu-toggle>
       </ion-content>
+
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
   </ion-split-pane>

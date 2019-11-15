@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent {
     {
       title: 'Profile',
       url: '/profile',
-      icon: 'home',
+      icon: 'person',
       component: 'ProfilePage'
     },
     {
@@ -34,13 +35,14 @@ export class AppComponent {
       icon: 'home',
       component: 'AdicionarPetPage'
     },
-    
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public auth: AuthService,
+    public navCtrl: NavController,
   ) {
     this.initializeApp();
   }
@@ -50,5 +52,10 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  logoutUsuario() {
+    this.auth.logout();
+    this.navCtrl.navigateRoot('/login');
   }
 }

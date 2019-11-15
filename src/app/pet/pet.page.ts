@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import * as jwtDecode from 'jwt-decode';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastService } from 'src/services/toast.service';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class PetPage implements OnInit {
     public menu: MenuController,
     public http: HttpClient,
     public auth: AuthService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    public toastService: ToastService) {
   }
 
   async ngOnInit() {
@@ -70,8 +72,6 @@ export class PetPage implements OnInit {
         })
   }
 
- 
-
   adotar() {
     if (this.usuarioID != null || this.usuarioID != "") {
       if (this.usuarioID !== this.petPorId.usuario_id) {
@@ -87,17 +87,18 @@ export class PetPage implements OnInit {
             this.loading = true;
             if (this.loading == true) {
               this.navCtrl.navigateRoot('/home');
-              alert("Pedido Enviado");
+              // alert("Pedido Enviado");
+              this.toastService.presentToast("Pedido Enviado", "success");
             }
           }, error => {
             console.log(error);
           });
 
       } else {
-        alert("Não é possivel adotar o proprio pet")
+        this.toastService.presentToast("Não é possivel adotar o proprio pet", "danger");
       }
     } else {
-      alert("Para adotar um pet é preciso fazer login!")
+      this.toastService.presentToast("Para adotar um pet é preciso fazer login!", "warning");
     }
 
   }

@@ -13,6 +13,7 @@ import { CategoriaService } from 'src/services/domain/categoria.service';
 import { AuthService } from 'src/services/auth.service';
 import { StorageService } from 'src/services/storage.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastService } from 'src/services/toast.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [
     StatusBar,
     SplashScreen,
+    ToastService,
     CategoriaService,
     AuthService,
     StorageService,

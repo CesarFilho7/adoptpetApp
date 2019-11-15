@@ -21,8 +21,8 @@
           <ion-input name="nome" [(ngModel)]="petPorId.nome" formControlName="nome" placeholder="Nome" readonly></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Gênero: </ion-label>
-          <ion-input name="genero" [(ngModel)]="petPorId.genero" formControlName="genero" placeholder="genero" readonly></ion-input>
+          <ion-label>Gênero: {{ this.petPorId.genero == 'F' ? 'Fêmea' : 'Macho' }}</ion-label>
+          <ion-input name="genero" formControlName="genero" readonly></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Descrição: </ion-label>
