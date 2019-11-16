@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import * as jwtDecode from 'jwt-decode';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastService } from 'src/services/toast.service';
+import { LoadingService } from 'src/services/loading.service';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class PetPage implements OnInit {
     public http: HttpClient,
     public auth: AuthService,
     private route: ActivatedRoute,
-    public toastService: ToastService) {
+    public toastService: ToastService,
+    public loadingService: LoadingService) {
   }
 
   async ngOnInit() {
@@ -61,19 +63,26 @@ export class PetPage implements OnInit {
     });
   }
 
-  getPet(id: string) {
+  async getPet(id: string) {
+    let loading = await this.loadingService.createLoading();
+    loading.present();
     this.http.get('https://adoptpet-api.herokuapp.com/pets/' + id)
       .subscribe(response => {
         this.petPorId = response
         console.log(this.petPorId);
-        this.aguardarValor = true
+        setTimeout(() => {
+          loading.dismiss();
+          this.aguardarValor = true
+        }, 500)
       },
         error => {
           console.log(error);
         })
   }
 
-  adotar() {
+  async adotar() {
+    let loading = await this.loadingService.createLoading();
+    loading.present();
     if (this.usuarioID != null || this.usuarioID != "") {
       if (this.usuarioID !== this.petPorId.usuario_id) {
         const pedido = {
@@ -85,11 +94,12 @@ export class PetPage implements OnInit {
         this.http.post('https://adoptpet-api.herokuapp.com/pedidos/', pedido)
           .subscribe(data => {
             console.log(data);
-            this.loading = true;
-            if (this.loading == true) {
+            setTimeout(() => {
+              loading.dismiss();
               this.navCtrl.navigateRoot('/home');
               this.toastService.presentToast("Pedido Enviado", "success");
-            }
+            }, 100)
+
           }, error => {
             console.log(error);
           });

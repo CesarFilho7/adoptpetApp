@@ -14,6 +14,7 @@ import { AuthService } from 'src/services/auth.service';
 import { StorageService } from 'src/services/storage.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastService } from 'src/services/toast.service';
+import { LoadingService } from 'src/services/loading.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { ToastService } from 'src/services/toast.service';
     ToastService,
     CategoriaService,
     AuthService,
+    LoadingService,
     StorageService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

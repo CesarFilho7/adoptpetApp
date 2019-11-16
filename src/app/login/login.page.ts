@@ -5,6 +5,7 @@ import { LoginDTO } from '../../../src/models/login.dto';
 import { NavController, MenuController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { ToastService } from 'src/services/toast.service';
+import { LoadingService } from 'src/services/loading.service';
 
 
 @Component({
@@ -23,11 +24,13 @@ export class LoginPage implements OnInit {
     public categoriaService: CategoriaService, 
     public menu: MenuController,
     public auth: AuthService,
-    public toastService: ToastService) {
+    public toastService: ToastService,
+    public isCarregando: LoadingService) {
 
   }
 
   ngOnInit() {
+    // this.isCarregando.presentLoading()
     this.buscarUsuariosCadastrados();
   }
 

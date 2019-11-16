@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import * as jwtDecode from 'jwt-decode';
+import { LoadingService } from 'src/services/loading.service';
 
 @Component({
   selector: 'app-usuario-pet',
@@ -25,10 +26,12 @@ export class UsuarioPetPage implements OnInit {
     public menu: MenuController,
     public http: HttpClient,
     public auth: AuthService,
+    public loadingService: LoadingService
   ) { }
 
   async ngOnInit() {
-
+    let loading = await this.loadingService.createLoading();
+    loading.present();
     let token = localStorage.getItem('localUser');
     console.log(token);
     if (token != null) {
@@ -39,8 +42,11 @@ export class UsuarioPetPage implements OnInit {
         .subscribe(response => {
           this.petPorUsuario = response
           console.log(this.petPorUsuario);
+          setTimeout(() => {
+            loading.dismiss();
+            this.aguardarValor = true
+          }, 500)
           
-          this.aguardarValor = true
         },
           error => {
             console.log(error);

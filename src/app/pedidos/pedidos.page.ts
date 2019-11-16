@@ -5,8 +5,8 @@ import { CategoriaService } from 'src/services/domain/categoria.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-
 import * as jwtDecode from 'jwt-decode';
+import { LoadingService } from 'src/services/loading.service';
 
 
 @Component({
@@ -28,22 +28,27 @@ export class PedidosPage implements OnInit {
     public menu: MenuController,
     public http: HttpClient,
     public auth: AuthService,
-    private route: ActivatedRoute) {
+    public loadingService: LoadingService) {
   }
 
   async ngOnInit() {
-
     let token = localStorage.getItem('localUser');
     console.log(token);
     if (token != null) {
       let decoded = jwtDecode(token)
       console.log(decoded);
       this.usuarioID = decoded.user_id
+
+      let loading = await this.loadingService.createLoading();
+      loading.present();
       this.http.get('https://adoptpet-api.herokuapp.com/usuarios/pedidos_pendentes/' + this.usuarioID)
         .subscribe(response => {
           this.aguardarValor = true
           this.pedidoPendentes = response
           console.log(this.pedidoPendentes);
+          setTimeout(() => {
+            loading.dismiss();
+          }, 500)
         },
           error => {
             console.log(error);
@@ -58,7 +63,9 @@ export class PedidosPage implements OnInit {
     });
   }
 
-  responderPedido(_id, _resposta) {
+  async responderPedido(_id, _resposta) {
+    let loading = await this.loadingService.createLoading();
+    loading.present();
     const pedido = {
       status: _resposta
     };
@@ -66,10 +73,15 @@ export class PedidosPage implements OnInit {
     this.http.put('https://adoptpet-api.herokuapp.com/pedidos_resposta/' + _id, pedido)
       .subscribe(response => {
         console.log(response);
+        setTimeout(() => {
+          loading.dismiss();
+        }, 300)
         },
-        error => {
+        error => { setTimeout(() => {
+          loading.dismiss();
           this.navCtrl.navigateRoot('/pedidos');
           location.reload()
+          }, 100)
           console.log(error);
         })
   }

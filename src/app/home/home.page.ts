@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PetPage } from '../pet/pet.page';
 import { DomSanitizer } from '@angular/platform-browser';
+import { LoadingService } from 'src/services/loading.service';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,8 @@ export class HomePage {
     private router: Router,
     public http: HttpClient,
     public menu: MenuController,
-    private _sanitizer: DomSanitizer) {
+    private _sanitizer: DomSanitizer,
+    public loadingService: LoadingService) {
 
   }
 
@@ -50,11 +52,18 @@ export class HomePage {
     this.navCtrl.navigateRoot('/home');
   }
 
-  buscarPets() {
+  async buscarPets() {
+    let loading = await this.loadingService.createLoading();
+    loading.present();
     this.categoriaService.findAllPets()
       .subscribe(response => {
         this.allPets = response
         console.log(this.allPets);
+        setTimeout(() => {
+          loading.dismiss();
+        }, 500)
+        
+        // this.isCarregando.dismissLoading()
         // this.profilePicture(this.allPets)
       },
         error => {
