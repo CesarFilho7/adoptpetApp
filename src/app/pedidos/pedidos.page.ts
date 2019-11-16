@@ -31,8 +31,6 @@ export class PedidosPage implements OnInit {
     private route: ActivatedRoute) {
   }
 
-
-
   async ngOnInit() {
 
     let token = localStorage.getItem('localUser');
@@ -46,7 +44,6 @@ export class PedidosPage implements OnInit {
           this.aguardarValor = true
           this.pedidoPendentes = response
           console.log(this.pedidoPendentes);
-          
         },
           error => {
             console.log(error);
