@@ -32,7 +32,8 @@ const routes: Routes = [
   },
   {
     path: 'adicionar-pet', loadChildren: './adicionar-pet/adicionar-pet.module#AdicionarPetPageModule'
-  },  { path: 'usuario-pet', loadChildren: './usuario-pet/usuario-pet.module#UsuarioPetPageModule' },
+  },
+  { path: 'usuario-pet', loadChildren: './usuario-pet/usuario-pet.module#UsuarioPetPageModule' },
 
 
 

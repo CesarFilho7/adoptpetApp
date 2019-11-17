@@ -10,23 +10,43 @@
   </ion-toolbar>
 </ion-header>
 <ion-content *ngIf="aguardarValor">
-  <ion-card class="welcome-card">
-    <ion-card-content>
-      <ion-item slot="start">
-        <img src='http://neoleader.com.br/wp-content/uploads/2015/05/geral_adulto-300x300.png'>
-      </ion-item><br>
-      <ion-item>
-        <ion-label>Nome: </ion-label>
-        <ion-input name="nome" [(ngModel)]="usuarioDados.nome" readonly></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>E-mail: </ion-label>
-        <ion-input name="email" [(ngModel)]="usuarioDados.email" readonly></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Senha: </ion-label>
-        <ion-input name="senha" [(ngModel)]="usuarioDados.senha" readonly></ion-input>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+  <form [formGroup]="form" (ngSubmit)="atualizar()">
+    <ion-card class="welcome-card">
+      <ion-card-content>
+        <ion-item slot="start">
+          <img src='http://neoleader.com.br/wp-content/uploads/2015/05/geral_adulto-300x300.png'>
+        </ion-item><br>
+        <ion-item>
+          <ion-label>Nome: </ion-label>
+          <ion-input name="nome" [(ngModel)]="usuarioDados.nome" formControlName="nome"
+            [readonly]="userEdit == false ? true : false"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>E-mail: </ion-label>
+          <ion-input name="email" [(ngModel)]="usuarioDados.email" formControlName="email"
+            [readonly]="userEdit == false ? true : false"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Senha: </ion-label>
+          <ion-input name="senha" [(ngModel)]="usuarioDados.senha" formControlName="senha"
+            [readonly]="userEdit == false ? true : false"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <div padding *ngIf="!userEdit">
+      <ion-button (click)="editar()" size="default" expand="block" color="secondary">
+        <p class="ion-padding-horizontal" style="font-weight: 700;">Editar Perfil</p>
+      </ion-button>
+    </div>
+    <div padding *ngIf="userEdit">
+      <ion-button type="submit" size="default" expand="block" color="secondary">
+        <p class="ion-padding-horizontal" style="font-weight: 700;">Atualizar</p>
+      </ion-button>
+    </div>
+    <!-- <ion-button padding *ngIf="userEdit">
+      <ion-button text-center size="default" type="submit" expand="block" color="secondary">
+        <p class="ion-padding-horizontal" style="font-weight: 700;">Atualizar</p>
+      </ion-button>
+    </ion-button> -->
+  </form>
 </ion-content>
