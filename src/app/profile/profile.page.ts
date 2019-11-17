@@ -5,6 +5,7 @@ import * as jwtDecode from 'jwt-decode';
 import { HttpClient } from '@angular/common/http';
 import { LoadingService } from 'src/services/loading.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ToastService } from 'src/services/toast.service';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class ProfilePage implements OnInit {
     public http: HttpClient,
     public auth: AuthService,
     public loadingService: LoadingService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    public toastService: ToastService) {
   }
 
   async ngOnInit() {
@@ -87,11 +89,12 @@ export class ProfilePage implements OnInit {
       console.log(response);
       setTimeout(() => {
         loading.dismiss();
+        this.toastService.presentToast("Atualização Feita!", "success");
         this.userEdit = false
       }, 500)
     },
       error => {
-        console.log(error);
+        this.toastService.presentToast("Não foi possivel atualizar!", "danger");
       })
     
   }
