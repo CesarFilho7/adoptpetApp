@@ -19,6 +19,9 @@ export class HomePage {
   public allPets
   public stadeEdit: boolean = false;
   public imagePet
+  public usuarioID
+  public pedidosPendentes
+  public isCarregando = false
 
   constructor(public categoriaService: CategoriaService,
     public auth: AuthService,
@@ -31,14 +34,31 @@ export class HomePage {
 
   }
 
-  ngOnInit() {
+ async ngOnInit() {
     this.buscarPets();
     let token = localStorage.getItem('localUser');
     console.log(token);
     if (token != null) {
       let decoded = jwtDecode(token)
+      this.usuarioID = decoded.user_id
       console.log(decoded);
     }
+
+      let loading = await this.loadingService.createLoading();
+      loading.present();
+      this.http.get('https://adoptpet-api.herokuapp.com/usuarios/pedidos_pendentes/' + this.usuarioID)
+        .subscribe(response => {
+          this.isCarregando = true
+          this.pedidosPendentes = response
+          console.log(this.pedidosPendentes);
+          
+          setTimeout(() => {
+            loading.dismiss();
+          }, 500)
+        },
+          error => {
+            console.log(error);
+          })
   }
 
   buscarPetPeloId(pet) {
@@ -50,6 +70,10 @@ export class HomePage {
 
   goHome() {
     this.navCtrl.navigateRoot('/home');
+  }
+
+  goPedidos(){
+    this.navCtrl.navigateRoot('/pedidos');
   }
 
   async buscarPets() {

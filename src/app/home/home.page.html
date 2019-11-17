@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header  *ngIf="isCarregando">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="isCarregando">
   <ion-card class="welcome-card">
     <ion-card-header>
         <ion-card-title><p style="color: #090827; font-style: italic; font-weight: 700px; ">Bem-Vindo(a)!</p></ion-card-title>
@@ -20,6 +20,11 @@
       </p>
     </ion-card-content> 
   </ion-card>
+  <ion-card class="welcome-card">
+      <ion-card-content>
+        <p>{{ pedidosPendentes.length == 0 ? 'Não há pedidos de adoção pendente para você!' : 'Há pedidos de adoção pendente, verifique no Menu(pedidos) e entre em contato!' }}</p>
+      </ion-card-content> 
+    </ion-card>
   <ion-item *ngFor="let pets of allPets">
     <ion-thumbnail slot="start"> 
       <img [src]="pets.foto" (click)="buscarPetPeloId(pets)">
