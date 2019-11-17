@@ -5,6 +5,7 @@ import { NavController, LoadingController, MenuController } from '@ionic/angular
 import { HttpClient } from '@angular/common/http';
 import { headersToString } from 'selenium-webdriver/http';
 import { ToastService } from 'src/services/toast.service';
+import { LoadingService } from 'src/services/loading.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -23,7 +24,8 @@ export class CadastroPage implements OnInit {
     public http: HttpClient,
     public loadingController: LoadingController,
     public menu: MenuController,
-    public toastService: ToastService) {
+    public toastService: ToastService,
+    public loadingService: LoadingService) {
   }
 
   ngOnInit() {
@@ -35,29 +37,6 @@ export class CadastroPage implements OnInit {
     });
   }
 
-  // async present(message: string = null, duration: number = null) {
-
-  //   if (this.currentLoading != null) {
-  //     this.currentLoading.dismiss();
-  //   }
-
-  //   this.currentLoading = await this.loadingController.create({
-  //     duration: duration,
-  //     message: message
-  //   });
-
-  //   return await this.currentLoading.present();
-  // }
-
-  // async dismiss() {
-  //   if (this.currentLoading != null) {
-
-  //     await this.loadingController.dismiss();
-  //     this.currentLoading = null;
-  //   }
-  //   return;
-  // }
-
   async salvar() {
     // this.currentLoading.create(5000, "Aguarde...")
     console.log('entrou');
@@ -66,15 +45,17 @@ export class CadastroPage implements OnInit {
       this.toastService.presentToast("Preencha os campos obrigatórios.", "danger");
       return;
     }
-
+    let loading = await this.loadingService.createLoading();
+    loading.present();
     this.http.post('https://adoptpet-api.herokuapp.com/usuarios/', this.usuario)
     .subscribe(data => {
       console.log(data);
-      this.teste = true;
       console.log(this.teste);
-      if(this.teste == true){
+      setTimeout(() => {
+        this.teste = true;
+        loading.dismiss();
         this.navCtrl.navigateRoot('/login');
-       }
+      }, 500)
      }, error => {
       console.log(error); 
     });    
