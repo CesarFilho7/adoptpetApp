@@ -13,29 +13,29 @@
   <form [formGroup]="form">
     <ion-card class="welcome-card">
       <ion-card-content>
-        <ion-item slot="start">
+        <div color="newcolor" slot="start">
           <img [src]="petPorId.foto">
-        </ion-item><br>
-        <ion-item>
+        </div><br>
+        <ion-item color="newcolor">
           <ion-label>Nome: </ion-label>
           <ion-input name="nome" [(ngModel)]="petPorId.nome" formControlName="nome" readonly>
           </ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item color="newcolor">
           <ion-label>Dono: </ion-label>
           <ion-input name="dono" [(ngModel)]="petPorId.dono" formControlName="dono" readonly>
           </ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item color="newcolor">
           <ion-label>Porte: </ion-label>
           <ion-input name="porte" [(ngModel)]="petPorId.porte" formControlName="porte" readonly>
           </ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item color="newcolor">
           <ion-label>Gênero: {{ this.petPorId.genero == 'F' ? 'Fêmea' : 'Macho' }}</ion-label>
           <ion-input name="genero" formControlName="genero" readonly></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item color="newcolor">
           <ion-label>Descrição: </ion-label>
           <ion-textarea rows="3" [(ngModel)]="petPorId.descricao" formControlName="descricao" readonly></ion-textarea>
         </ion-item>

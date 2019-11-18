@@ -14,12 +14,18 @@
     <ion-item *ngIf="petPorUsuario.length == 0 || petPorUsuario.length == []">
       <ion-label text-center>Não há Pet Cadastrado! </ion-label>
     </ion-item>
-    <ion-item *ngFor="let pet of petPorUsuario">
-      <ion-thumbnail slot="start">
-        <img [src]="pet.foto" (click)="paginaDoPet(pet)">
-      </ion-thumbnail>
-      <ion-input name="nome" [(ngModel)]="pet.nome" placeholder="Nome" readonly></ion-input>
-    </ion-item>
+    <ion-content class="card-background-page">
+      <ion-grid>
+          <ion-row>
+            <ion-col col-6>
+      <ion-card *ngFor="let pet of petPorUsuario" (click)="paginaDoPet(pet)">
+
+        <img [src]="pet.foto">
+        <div class="card-title">{{ pet.nome }}</div>
+        <div class="card-subtitle">Ver mais</div>
+      </ion-card></ion-col>
+    </ion-row></ion-grid>
+  </ion-content>
     <!-- <div padding>
         <ion-button (click)="adotar()" size="default" type="submit" expand="block" color="secondary">
           <p class="ion-padding-horizontal" style="font-weight: 700;">Aceitar</p>

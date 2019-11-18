@@ -25,12 +25,17 @@
         <p>{{ pedidosPendentes.length == 0 ? 'Não há pedidos de adoção pendente para você!' : 'Há pedidos de adoção pendente, verifique no Menu(pedidos) e entre em contato!' }}</p>
       </ion-card-content> 
     </ion-card>
-  <ion-item *ngFor="let pets of allPets">
-    <ion-thumbnail slot="start"> 
-      <img [src]="pets.foto" (click)="buscarPetPeloId(pets)">
-    </ion-thumbnail>
-    <p (click)="buscarPetPeloId(pets)">{{ pets.nome }}</p>
-  </ion-item>
+    <ion-content class="card-background-page">
+      <ion-grid>
+          <ion-row>
+            <ion-col col-6>
+      <ion-card *ngFor="let pets of allPets" (click)="buscarPetPeloId(pets)">
+        <img [src]="pets.foto"/>
+        <div class="card-title">{{ pets.nome }}</div>
+        <div class="card-subtitle">Ver mais</div>
+      </ion-card></ion-col>
+    </ion-row></ion-grid>
+  </ion-content>
 </ion-content>
 <!-- <div class="ion-padding">
   <ion-button expand="block" (click)="login()" type="submit" class="ion-no-margin">Create account</ion-button>

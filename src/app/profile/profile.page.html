@@ -13,20 +13,19 @@
   <form [formGroup]="form" (ngSubmit)="atualizar()">
     <ion-card class="welcome-card">
       <ion-card-content>
-        <ion-item slot="start">
-          <img src='http://neoleader.com.br/wp-content/uploads/2015/05/geral_adulto-300x300.png'>
-        </ion-item><br>
-        <ion-item>
-          <ion-label>Nome: </ion-label>
+        <div slot="start" color="newcolor">
+          <ion-thumbnail class="center"><img src='http://neoleader.com.br/wp-content/uploads/2015/05/geral_adulto-300x300.png'></ion-thumbnail>
+        </div><br>
+        <h1 text-center color="newcolor">
           <ion-input name="nome" [(ngModel)]="usuarioDados.nome" formControlName="nome"
             [readonly]="userEdit == false ? true : false"></ion-input>
-        </ion-item>
-        <ion-item>
+        </h1>
+        <ion-item color="newcolor">
           <ion-label>E-mail: </ion-label>
           <ion-input name="email" [(ngModel)]="usuarioDados.email" formControlName="email"
             [readonly]="userEdit == false ? true : false"></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item color="newcolor">
           <ion-label>Senha: </ion-label>
           <ion-input name="senha" [(ngModel)]="usuarioDados.senha" formControlName="senha"
             [readonly]="userEdit == false ? true : false"></ion-input>

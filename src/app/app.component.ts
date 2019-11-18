@@ -26,19 +26,19 @@ export class AppComponent {
     {
       title: 'Pedidos',
       url: '/pedidos',
-      icon: 'home',
+      icon: 'open',
       component: 'PedidosPage'
     },
     {
       title: 'Meus Pets',
       url: '/usuario-pet',
-      icon: 'person',
+      icon: 'paw',
       component: 'UsuarioPetPage'
     },
     {
       title: 'Adicionar Pet',
       url: '/adicionar-pet',
-      icon: 'home',
+      icon: 'add',
       component: 'AdicionarPetPage'
     },
   ];
