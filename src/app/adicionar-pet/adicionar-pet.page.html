@@ -26,7 +26,7 @@
             </ion-item> -->
             <ion-item>
               <ion-label>Espécie:</ion-label>
-              <ion-select formControlName="especie" required>
+              <ion-select interface="popover" formControlName="especie" required>
                 <ion-select-option *ngFor="let especie of especieTipos">{{ especie.nome }}
                 </ion-select-option>
               </ion-select>
@@ -35,7 +35,7 @@
             </ion-item>
             <ion-item>
               <ion-label>Porte:</ion-label>
-              <ion-select formControlName="porte" required>
+              <ion-select interface="popover" formControlName="porte" required>
                 <ion-select-option *ngFor="let porte of porteTipos">{{ porte.nome }}
                 </ion-select-option>
               </ion-select>
@@ -43,8 +43,8 @@
             </ion-item>
             <ion-item>
               <ion-label>Gênero:</ion-label>
-              <ion-select formControlName="genero">
-                <ion-select-option *ngFor="let genero of generoTipos">{{ genero.nome }}
+              <ion-select interface="popover" formControlName="genero">
+                <ion-select-option [value]="genero.id" *ngFor="let genero of generoTipos">{{ genero.nome }}
                 </ion-select-option>
               </ion-select>
               <!-- <ion-input name="genero" [(ngModel)]="pet.genero" formControlName="genero" placeholder="Gênero" required> -->

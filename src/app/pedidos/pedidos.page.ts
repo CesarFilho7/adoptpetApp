@@ -81,6 +81,8 @@ export class PedidosPage implements OnInit {
           loading.dismiss();
           this.navCtrl.navigateRoot('/pedidos');
           location.reload()
+          console.log(this.pedidoPendentes);          
+          // this.navCtrl.setRoot(this.navCtrl.getActive().component)
           }, 100)
           console.log(error);
         })

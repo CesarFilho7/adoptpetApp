@@ -21,7 +21,7 @@ export class AdicionarPetPage implements OnInit {
   public usuarioId
 
   public porteTipos = [{nome: "Pequeno"}, {nome: "Médio"}, {nome: "Grande"}]
-  public generoTipos = [{nome: "Macho"}, {nome: "Fêmea"}]
+  public generoTipos = [{nome: "Macho", id:"M"}, {nome: "Fêmea", id: "F"}]
   public especieTipos = [{nome: "Cão"}, {nome: "Gato"}]
 
 
@@ -51,7 +51,7 @@ export class AdicionarPetPage implements OnInit {
       'porte': ['', [Validators.required]],
       'genero': ['', [Validators.required, Validators.maxLength(20)]],
       'descricao': ['', [Validators.required]],
-      'foto': [''],
+      'foto': ['']
     });
   }
 
@@ -76,10 +76,13 @@ export class AdicionarPetPage implements OnInit {
     this.http.post('https://adoptpet-api.herokuapp.com/pets/', pet)
     .subscribe(data => {
       console.log(data);
-      this.currentLoading = true;
-      if(this.currentLoading == true){
+      setTimeout(() => {
+        loading.dismiss();
+        this.currentLoading = true;
         this.navCtrl.navigateRoot('/home');
-       }
+        this.toastService.presentToast("Novo pet Adicionado!", "success")
+      }, 300)
+    
      }, error => {
       console.log(error);
       setTimeout(() => {
