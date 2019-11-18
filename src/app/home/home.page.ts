@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { PetPage } from '../pet/pet.page';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LoadingService } from 'src/services/loading.service';
+import { ToastService } from 'src/services/toast.service';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,8 @@ export class HomePage {
     public http: HttpClient,
     public menu: MenuController,
     private _sanitizer: DomSanitizer,
-    public loadingService: LoadingService) {
+    public loadingService: LoadingService,
+    public toastService: ToastService) {
 
   }
 
@@ -58,6 +60,10 @@ export class HomePage {
         },
           error => {
             console.log(error);
+            setTimeout(() => {
+              loading.dismiss();
+              this.toastService.presentToast("Não foi possivel salvar!", "danger")
+            }, 300)
           })
   }
 
@@ -92,6 +98,10 @@ export class HomePage {
       },
         error => {
           console.log(error);
+          setTimeout(() => {
+            loading.dismiss();
+            this.toastService.presentToast("Não foi possivel listar os pets!", "danger")
+          }, 300)
         })
   }
 

@@ -58,6 +58,10 @@ export class CadastroPage implements OnInit {
       }, 500)
      }, error => {
       console.log(error); 
+      setTimeout(() => {
+        loading.dismiss();
+        this.toastService.presentToast("Não foi possivel adicionar!", "danger")
+      }, 300)
     });    
     
   }

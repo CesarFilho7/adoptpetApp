@@ -105,10 +105,16 @@ export class PetPage implements OnInit {
           });
 
       } else {
-        this.toastService.presentToast("Não é possivel adotar o proprio pet", "danger");
+        setTimeout(() => {
+          this.toastService.presentToast("Não é possivel adotar o proprio pet", "danger");
+          loading.dismiss();
+        }, 500)
       }
     } else {
-      this.toastService.presentToast("Para adotar um pet é preciso fazer login!", "warning");
+      setTimeout(() => {
+        this.toastService.presentToast("Para adotar um pet é preciso fazer login!", "warning");
+        loading.dismiss();
+      }, 500) 
     }
 
   }

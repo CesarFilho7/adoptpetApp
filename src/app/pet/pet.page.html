@@ -14,7 +14,7 @@
     <ion-card class="welcome-card">
       <ion-card-content>
         <div color="newcolor" slot="start">
-          <img [src]="petPorId.foto">
+          <img [src]="petPorId.foto ? petPorId.foto : '../../assets/pet.png'">
         </div><br>
         <ion-item color="newcolor">
           <ion-label>Nome: </ion-label>

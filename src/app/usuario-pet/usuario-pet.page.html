@@ -20,7 +20,7 @@
             <ion-col col-6>
       <ion-card *ngFor="let pet of petPorUsuario" (click)="paginaDoPet(pet)">
 
-        <img [src]="pet.foto">
+        <img [src]="pet.foto ? pet.foto : '../../assets/pet.png'">
         <div class="card-title">{{ pet.nome }}</div>
         <div class="card-subtitle">Ver mais</div>
       </ion-card></ion-col>

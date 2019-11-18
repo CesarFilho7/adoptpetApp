@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/services/auth.service';
 import * as jwtDecode from 'jwt-decode';
 import { ToastService } from 'src/services/toast.service';
+import { LoadingService } from 'src/services/loading.service';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class AdicionarPetPage implements OnInit {
     public loadingController: LoadingController,
     public menu: MenuController,
     public auth: AuthService,
-    public toastService: ToastService) {
+    public toastService: ToastService,
+    public loadingService: LoadingService ) {
   }
 
   ngOnInit() {
@@ -53,7 +55,9 @@ export class AdicionarPetPage implements OnInit {
     });
   }
 
-  salvar(){
+  async salvar(){
+    let loading = await this.loadingService.createLoading();
+    loading.present();
     console.log(this.form.value);
     
     const pet = {
@@ -78,8 +82,10 @@ export class AdicionarPetPage implements OnInit {
        }
      }, error => {
       console.log(error);
-      this.toastService.presentToast("Não foi possivel salvar!", "danger");
-
+      setTimeout(() => {
+        loading.dismiss();
+        this.toastService.presentToast("Não foi possivel salvar!", "danger")
+      }, 300)
     });    
   }
 
